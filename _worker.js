@@ -2147,14 +2147,9 @@ async function getRegisterHTML() {
           <body>
               <div id="root">
                   <div class="page-wrapper">
-                      <header class="oai-header">
-                          <a href="https://${WorkerURL}/admin">
-                              <img src="${logourl}" alt="Logo">
-                          </a>
-                      </header>
                       <main class="main-container">
                           <section class="content-wrapper">
-                              <div class="title-wrapper"><h1 class="title">Create your account</h1></div>
+                              <div class="title-wrapper"><h1 class="title">创建你的账号</h1></div>
                               <div class="login-container">
                                   <form id="manageAccountForm0" action="/register" method="POST">
                                       <div class="input-wrapper" id="cdkeyWrapper">
@@ -2170,7 +2165,7 @@ async function getRegisterHTML() {
                                               required
                                               placeholder=" "
                                           />
-                                          <label class="email-label" for="cdkey">CDKEY</label>
+                                          <label class="email-label" for="cdkey">请输入你的注册码</label>
                                       </div>
                                       <div class="input-wrapper" id="usernameWrapper" style="display: none;">
                                       <input
@@ -2185,15 +2180,15 @@ async function getRegisterHTML() {
                                           placeholder=" "
                                           required
                                       />
-                                      <label class="email-label" for="username">Your Username</label>
+                                      <label class="email-label" for="username">你的密码</label>
                                     </div>
                                       <input type="hidden" id="cf-turnstile-response" name="cf-turnstile-response" required>
-                                      <button class="continue-btn" type="button" id="continueBtn">Continue</button>
+                                      <button class="continue-btn" type="button" id="continueBtn">注册</button>
                                       <div class="cf-turnstile" data-sitekey="${turnstileSiteKey}" data-callback="onTurnstileCallback"></div>
                                   </form>
           
-                                  <div class="divider-wrapper"><span class="divider">Or</span></div>
-                                  <p class="other-page">Already have an account? <a class="other-page-link" href="https://${WorkerURL}">Login</a></p>
+                                  <div class="divider-wrapper"><span class="divider">或</span></div>
+                                  <p class="other-page">已经有账号了? <a class="other-page-link" href="https://${WorkerURL}">点击登录</a></p>
                               </div>
                           </section>
                       </main>
@@ -3606,11 +3601,6 @@ async function getLoginHTML(setan) {
      <body>
          <div id="root">
              <div class="page-wrapper">
-                 <header class="oai-header">
-                     <a href="https://${WorkerURL}/admin">
-                         <img src="${logourl}" alt="Logo">
-                     </a>
-                 </header>
                  <main class="main-container">
                      <section class="content-wrapper">
                          <div class="title-wrapper"><h1 class="title">${websiteName}</h1></div>
@@ -3629,7 +3619,7 @@ async function getLoginHTML(setan) {
                                          required
                                          placeholder=" "
                                      />
-                                     <label class="email-label" for="un">Username</label>
+                                     <label class="email-label" for="un">密码</label>
                                  </div>`;
  
    const aliveAccountOptions = await getAliveAccountOptions();
@@ -3637,28 +3627,24 @@ async function getLoginHTML(setan) {
    const accountNumberHTML = `
                                  <div class="input-wrapper">
                                      <label for="an">
-                                         <a class="username-label" href="https://${WorkerURL}/token">Account Number:</a>
+                                         <a class="username-label" href="https://${WorkerURL}/token">要使用的Plus账号序号:</a>
                                          <span class="help-icon">?</span>
                                      </label>
                                      <div class="field-container">
                                          <select id="an" name="an" class="email-input">
                                              ${aliveAccountOptions}
                                          </select>
-                                         <input type="number" id="an-custom" name="an-custom" class="email-input" placeholder="Enter number">
                                      </div>
                                  </div>`;
  
    const commonHTML2 = `
-                                 <div class="checkbox-wrapper">
-                                     <input type="checkbox" id="an-issues" name="anissues" />
-                                     <label class="checkbox-label" for="an-issues">Report Account Issues</label>
-                                 </div>
-                                 <button class="continue-btn" type="submit">Continue</button>
+
+                                 <button class="continue-btn" type="submit">登录</button>
                                  <input type="hidden" id="cf-turnstile-response" name="cf-turnstile-response" required>
                                  <div class="cf-turnstile" data-sitekey="${turnstileSiteKey}" data-callback="onTurnstileCallback"></div>
                              </form>
-                             <div class="divider-wrapper"><span class="divider">Or</span></div>
-                             <p class="other-page">Don't have an account? <a class="other-page-link" href="https://${WorkerURL}/register">Sign Up</a></p>
+                             <div class="divider-wrapper"><span class="divider">或</span></div>
+                             <p class="other-page">还没有账号? <a class="other-page-link" href="https://${WorkerURL}/register">点击注册</a></p>
                          </div>
                      </section>
                  </main>
