@@ -132,9 +132,9 @@ async function handleRequest(request) {
   const url = new URL(request.url);
   const voiceURL = await KV.get('VoiceURL');
   const admin = await KV.get('Admin');
-  const chatlogourl = await KV.get('ChatLogoURL') || await KV.get('LogoURL') || logo;
-  const chatusername = await KV.get('ChatUserName') || 'Haibara AI';
-  const chatmail = await KV.get('ChatMail') || 'Power by Pandora';
+  const chatlogourl = logo;
+  const chatusername = 'ChatGPT PLUS';
+  const chatmail = 'ChatGPT@openai.com';
   const apiKey = await KV.get('ModerationApiKey');
    const cookies = request.headers.get('Cookie');
   let aian = '';
