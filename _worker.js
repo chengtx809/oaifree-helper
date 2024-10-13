@@ -1768,10 +1768,10 @@ async function generateRegisterResponse(message) {
  
 async function getRegisterHTML() {
   const WorkerURL=await KV.get('WorkerURL');
-  const turnstileSiteKey=await KV.get('TurnstileSiteKey');
-  const websiteName = await KV.get('WebName') || 'Haibara AI';
-  const logourl = await KV.get('LogoURL') || logo;
-  const removeTurnstile = await KV.get('RemoveTurnstile')||'';
+  const turnstileSiteKey= '1';
+  const websiteName = 'ChatGPT PLUS';
+  const logourl = logo;
+  const removeTurnstile = '1';
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -3201,10 +3201,10 @@ async function getAliveAccountOptions() {
 
 async function getLoginHTML(setan) {
   const WorkerURL=await KV.get('WorkerURL');
-  const turnstileSiteKey=await KV.get('TurnstileSiteKey');
-  const websiteName = await KV.get('WebName') || 'Haibara AI';
-  const logourl = await KV.get('LogoURL') || logo;
-  const removeTurnstile = await KV.get('RemoveTurnstile')||'';
+  const turnstileSiteKey= '1';
+  const websiteName = 'ChatGPT PLUS';
+  const logourl = logo;
+  const removeTurnstile = '1';
    const commonHTML = `
      <!DOCTYPE html>
      <html lang="en">
