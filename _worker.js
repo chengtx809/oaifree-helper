@@ -134,9 +134,9 @@ async function handleRequest(request) {
   }
   const voiceURL = await KV.get('VoiceURL');
   const admin = await KV.get('Admin');
-  const chatlogourl = await KV.get('ChatLogoURL') || await KV.get('LogoURL') || logo;
-  const chatusername = await KV.get('ChatUserName') || 'Haibara AI';
-  const chatmail = await KV.get('ChatMail') || 'Power by Pandora';
+  const chatlogourl = logo;
+  const chatusername = 'ChatGPT';
+  const chatmail = await KV.get('ChatMail') || 'chatgpt@openai.com';
   const apiKey = await KV.get('ModerationApiKey');
   const cookies = request.headers.get('Cookie');
   let aian = '';
@@ -407,10 +407,10 @@ async function injectFloatingBall(html) {
                 }
     
                 .floating-ball {
-                    width: 40px;
-                    height: 40px;
-                    background-color: var(--main-surface-secondary);
-                    color: var(--text-secondary);
+                    width: 80px;
+                    height: 80px;
+                    background-color: #FFC0CB;
+                    color: #FFFFFF;
                     border-radius: 50%;
                     display: flex;
                     justify-content: center;
@@ -2036,7 +2036,7 @@ async function generateRegisterResponse(message) {
 async function getRegisterHTML() {
   const WorkerURL = await KV.get('WorkerURL');
   const turnstileSiteKey = await KV.get('TurnstileSiteKey');
-  const websiteName = await KV.get('WebName') || 'Haibara AI';
+  const websiteName = 'ChatGPT';
   const logourl = await KV.get('LogoURL') || logo;
   const removeTurnstile = await KV.get('RemoveTurnstile') || '';
   return `
@@ -2051,11 +2051,6 @@ async function getRegisterHTML() {
       <title>Sign Up - ${websiteName}</title>
       <style>
           @charset "UTF-8";
-          .oai-header img {
-              height: auto;
-              width: 128px;
-              margin-top: 80px;
-          }
   
           a {
               font-weight: 400;
@@ -2226,14 +2221,6 @@ async function getRegisterHTML() {
               flex-direction: column;
               justify-content: space-between;
               min-height: 100%;
-          }
-  
-          .oai-header {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 100%;
-              background-color: #fff;
           }
   
           body {
@@ -2412,11 +2399,6 @@ async function getRegisterHTML() {
           <body>
               <div id="root">
                   <div class="page-wrapper">
-                      <header class="oai-header">
-                          <a href="https://${WorkerURL}/admin">
-                              <img src="${logourl}" alt="Logo">
-                          </a>
-                      </header>
                       <main class="main-container">
                           <section class="content-wrapper">
                               <div class="title-wrapper"><h1 class="title">Create your account</h1></div>
@@ -3498,8 +3480,8 @@ async function getGPTStatus() {
 async function getLoginHTML(setan) {
   const WorkerURL = await KV.get('WorkerURL');
   const turnstileSiteKey = await KV.get('TurnstileSiteKey');
-  const websiteName = await KV.get('WebName') || 'Haibara AI';
-  const logourl = await KV.get('LogoURL') || logo;
+  const websiteName = 'ChatGPT';
+  const logourl = logo;
   const removeTurnstile = await KV.get('RemoveTurnstile') || '';
   const commonHTML = `
      <!DOCTYPE html>
@@ -3513,11 +3495,6 @@ async function getLoginHTML(setan) {
          <title>Login - ${websiteName}</title>
          <style>
              @charset "UTF-8";
-             .oai-header img {
-                 height: auto;
-                 width: 128px;
-                 margin-top: 50px;
-             }
  
              a {
                  font-weight: 400;
@@ -3737,14 +3714,6 @@ async function getLoginHTML(setan) {
                  min-height: 100%;
              }
  
-             .oai-header {
-                 display: flex;
-                 justify-content: center;
-                 align-items: center;
-                 width: 100%;
-                 background-color: #fff;
-             }
- 
              body {
                  background-color: #fff;
                  display: block;
@@ -3935,11 +3904,6 @@ async function getLoginHTML(setan) {
      <body>
          <div id="root">
              <div class="page-wrapper">
-                 <header class="oai-header">
-                     <a href="https://${WorkerURL}/admin">
-                         <img src="${logourl}" alt="Logo">
-                     </a>
-                 </header>
                  <main class="main-container">
                      <section class="content-wrapper">
                          <div class="title-wrapper"><h1 class="title">${websiteName}</h1></div>
