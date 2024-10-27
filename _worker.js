@@ -398,26 +398,26 @@ async function injectFloatingBall(html) {
                 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
     
                 .floating-ball-container {
-                    position: fixed;
-                    top: 25%;
-                    right: 20px;
-                    transform: translateY(-50%);
-                    z-index: 1000;
-                    cursor: move;
+                  position: fixed;
+                  top: 25%;
+                  right: 20px;
+                  transform: translateY(-50%);
+                  z-index: 1000;
+                  cursor: move;
                 }
-    
+
                 .floating-ball {
-                    width: 80px;
-                    height: 80px;
-                    background-color: #FFC0CB;
-                    color: #FFFFFF;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 15px; 
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                    transition: right 0.3s;
+                  width: 60px;
+                  height: 60px;
+                  background-color: #FF69B4; /* 深一点的粉红色 */
+                  color: #FFFFFF;
+                  border-radius: 50%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-size: 15px;
+                  box-shadow: 7px 7px 15px #d6457a, -7px -7px 15px #ff93ce; /* 新拟态效果 */
+                  transition: right 0.3s;
                 }
     
                 .menu {
