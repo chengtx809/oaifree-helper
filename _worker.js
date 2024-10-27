@@ -409,14 +409,14 @@ async function injectFloatingBall(html) {
                 .floating-ball {
                   width: 60px;
                   height: 60px;
-                  background-color: #FF69B4; /* 深一点的粉红色 */
+                  border-radius: 150px;
+                  background: #0da781;
+                  box-shadow: 6px 6px 12px #0b8e6e, -6px -6px 12px #0fc094;
                   color: #FFFFFF;
-                  border-radius: 50%;
                   display: flex;
                   justify-content: center;
                   align-items: center;
                   font-size: 15px;
-                  box-shadow: 7px 7px 15px #d6457a, -7px -7px 15px #ff93ce; /* 新拟态效果 */
                   transition: right 0.3s;
                 }
     
