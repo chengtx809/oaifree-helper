@@ -80,10 +80,10 @@ function generatePassword(token) {
   return hashStr.substring(0, 15);
 }
 async function verifyTurnstile(responseToken) {
-  const removeTurnstile = await KV.get('RemoveTurnstile') || '';
+  const removeTurnstile = '1';
   if (removeTurnstile) { return 'true' }
   const verifyUrl = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
-  const secretKey = await KV.get('TurnstileKeys');
+  const secretKey = '';
   const response = await fetch(verifyUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -136,7 +136,7 @@ async function handleRequest(request) {
   const admin = await KV.get('Admin');
   const chatlogourl = logo;
   const chatusername = 'ChatGPT';
-  const chatmail = await KV.get('ChatMail') || 'chatgpt@openai.com';
+  const chatmail = 'chatgpt@openai.com';
   const apiKey = await KV.get('ModerationApiKey');
   const cookies = request.headers.get('Cookie');
   let aian = '';
@@ -384,7 +384,7 @@ async function injectFloatingBall(html) {
                 `+(setan ? ``:`
                     <div class="input-wrapper">
                         <select id="an" name="an" class="choose-account">
-                            <option value="" selected disabled hidden>Random Account</option>
+                            <option value="" selected disabled hidden>点击选择账号</option>
                             ${aliveAccountOptions}
                         </select>
                     </div>`) +`
@@ -986,9 +986,9 @@ async function generatePlusResponse(message, adminuserName) {
 }
 
 async function getPlusHTML() {
-  const WorkerURL = await KV.get('WorkerURL');
-  const turnstileSiteKey = await KV.get('TurnstileSiteKey');
-  const removeTurnstile = await KV.get('RemoveTurnstile') || '';
+  const WorkerURL = 'oaifree.chengtx.xyz';
+  const turnstileSiteKey = '';
+  const removeTurnstile = '1';
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -1220,7 +1220,7 @@ async function handleExportPostRequest(request) {
       return await exportToken(tokenType, accountType);
     }
     else {
-      const WorkerURL = await KV.get('WorkerURL');
+      const WorkerURL = 'oaifree.chengtx.xyz';
       return new Response(`https://${WorkerURL}/export?admin=${adminPassword}&type=${accountType}&token=${tokenType}`, { status: 200 });
     }
   }
@@ -1232,8 +1232,8 @@ async function handleExportPostRequest(request) {
 
 
 async function getExportHTML() {
-  const turnstileSiteKey = await KV.get('TurnstileSiteKey');
-  const removeTurnstile = await KV.get('RemoveTurnstile') || '';
+  const turnstileSiteKey = '';
+  const removeTurnstile = '1';
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -1416,9 +1416,9 @@ async function generateAdminResponse(message) {
 }
 
 async function getAdminHTML() {
-  const WorkerURL = await KV.get('WorkerURL');
-  const turnstileSiteKey = await KV.get('TurnstileSiteKey');
-  const removeTurnstile = await KV.get('RemoveTurnstile') || '';
+  const WorkerURL = 'oaifree.chengtx.xyz';
+  const turnstileSiteKey = '';
+  const removeTurnstile = '1';
   return `
   <!DOCTYPE html>
 <html lang="en">
@@ -1641,7 +1641,7 @@ async function handleUserPostRequest(request) {
     const users = await KV.get('Users') || '';
     const freeUsers = await KV.get('FreeUsers') || '';
     const vipUsers = await KV.get('VIPUsers') || '';
-    const WorkerURL = await KV.get('WorkerURL');
+    const WorkerURL = 'oaifree.chengtx.xyz';
     return generateUserResponse(`User Added successfully\n\nLogin link:\nhttps://${WorkerURL}/?un=${newUsers}\n\nusers:\n${users}\n\nfreeusers:\n${freeUsers}\n\nvipusers:\n${vipUsers}`);
   }
 }
@@ -1668,15 +1668,13 @@ async function deleteUsers(usersToDelete) {
     await KV.put(userType, updatedUsers);
   }
 
-  /*
-//注销该用的sharetoken,注销所有账号该用户的sharetoken【严格】，如需启用则取消注释这一段
-const plusAliveAccounts = await KV.get('PlusAliveAccounts');
-const accountNumbers = plusAliveAccounts.split(','); // 假设KV.PlusAliveAccounts返回的格式是"1,2,3,4,5"
-for (const accountNumber of accountNumbers) {
+  //注销该用的sharetoken,注销所有账号该用户的sharetoken【严格】，如需启用则取消注释这一段
+  const plusAliveAccounts = await KV.get('PlusAliveAccounts');
+  const accountNumbers = plusAliveAccounts.split(','); // 假设KV.PlusAliveAccounts返回的格式是"1,2,3,4,5"
+  for (const accountNumber of accountNumbers) {
     await deleteShareToken(usersToDelete, accountNumber);
-}
-return '删除成功';  
-*/
+  }
+  return '删除成功';  
 
   //注销用户的历史sharetoken，仅注销最后一次登陆所用的
   const accountNumber = await getToCheckAccountNumber(userName, 'Plus');
@@ -1836,8 +1834,8 @@ async function queryLimits(accessToken, shareToken) {
 
 
 async function getUserHTML() {
-  const turnstileSiteKey = await KV.get('TurnstileSiteKey');
-  const removeTurnstile = await KV.get('RemoveTurnstile') || '';
+  const turnstileSiteKey = '';
+  const removeTurnstile = '1';
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -1971,7 +1969,7 @@ async function handleRegisterPostRequest(request) {
     return generateRegisterResponse('Turnstile verification failed')
   }
 
-  const autoDeleteCDK = await KV.get('AutoDeleteCDK')
+  const autoDeleteCDK = '1';
   const cdkeyStore = await KV.get('CDKEY') || '';
   const cdkeyList = cdkeyStore ? cdkeyStore.split(',') : []
 
@@ -2034,11 +2032,11 @@ async function generateRegisterResponse(message) {
 
 
 async function getRegisterHTML() {
-  const WorkerURL = await KV.get('WorkerURL');
-  const turnstileSiteKey = await KV.get('TurnstileSiteKey');
+  const WorkerURL = 'oaifree.chengtx.xyz';
+  const turnstileSiteKey = '';
   const websiteName = 'ChatGPT';
-  const logourl = await KV.get('LogoURL') || logo;
-  const removeTurnstile = await KV.get('RemoveTurnstile') || '';
+  const logourl = logo;
+  const removeTurnstile = '1';
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -2417,7 +2415,7 @@ async function getRegisterHTML() {
                                               required
                                               placeholder=" "
                                           />
-                                          <label class="email-label" for="cdkey">CDKEY</label>
+                                          <label class="email-label" for="cdkey">注册码</label>
                                       </div>
                                       <div class="input-wrapper" id="usernameWrapper" style="display: none;">
                                       <input
@@ -2432,22 +2430,22 @@ async function getRegisterHTML() {
                                           placeholder=" "
                                           required
                                       />
-                                      <label class="email-label" for="username">Your Username</label>
+                                      <label class="email-label" for="username">设置你的密码</label>
                                     </div>
                                       <input type="hidden" id="cf-turnstile-response" name="cf-turnstile-response" required>
-                                      <button class="continue-btn" type="button" id="continueBtn">Continue</button>
+                                      <button class="continue-btn" type="button" id="continueBtn">注册</button>
                                       <div class="cf-turnstile" data-sitekey="${turnstileSiteKey}" data-callback="onTurnstileCallback"></div>
                                   </form>
           
                                   <div class="divider-wrapper"><span class="divider">Or</span></div>
-                                  <p class="other-page">Already have an account? <a class="other-page-link" href="https://${WorkerURL}">Login</a></p>
+                                  <p class="other-page">已经有账号了? <a class="other-page-link" href="https://${WorkerURL}">点击登录</a></p>
                               </div>
                           </section>
                       </main>
                   </div>
               </div>
               <footer class="footer">
-                <p>&copy; All rights reserved. | Powered by <a href="https://linux.do" target="_blank">Pandora</a> & <a href="https://chatgpt.com" target="_blank">ChatGPT</a></p>
+                <p>&copy; All rights reserved. | Powered by <a href="https://chatgpt.com" target="_blank">ChatGPT</a></p>
             </footer>
               <script>
               if ('${removeTurnstile}') {
@@ -2622,8 +2620,8 @@ async function saveUsageLogs(usersData) {
 
 
 async function getTableUserHTML() {
-  const removeTurnstile = await KV.get('RemoveTurnstile') || '';
-  const turnstileSiteKey = await KV.get('TurnstileSiteKey');
+  const removeTurnstile = '1';
+  const turnstileSiteKey = ' ';
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -2760,7 +2758,7 @@ async function generateUsageResponse(message) {
 }
 
 async function generateTableHTML(usersData, queryType) {
-  const logourl = await KV.get('LogoURL') || logo;
+  const logourl = logo;
   const pageTitle = "Usage Chart";
   const historyData = await getHistoryData(queryType);
 
@@ -3075,7 +3073,7 @@ async function handleLogin(userName, initialaccountNumber, turnstileResponse, an
   if (turnstileResponse !== 'do not need Turnstle' && (!turnstileResponse || !await verifyTurnstile(turnstileResponse))) {
     return generateLoginResponse('Turnstile verification failed');
   }
-  const proxiedDomain = await KV.get('WorkerURL');
+  const proxiedDomain = 'oaifree.chengtx.xyz';
   const status = await KV.get('Status');
   const GPTState = await getGPTStatus();
   if ((GPTState == 'major_performance') && (!status)) {
@@ -3121,7 +3119,7 @@ async function handleLogin(userName, initialaccountNumber, turnstileResponse, an
   let fullUserName = userName;
   let foundSuffix = false;
   let suffix = '';
-  const forcean = await KV.get("ForceAN");
+  const forcean = '';
   const defaultusers = await KV.get("Users") || '';
   const vipusers = await KV.get("VIPUsers") || '';
   const freeusers = await KV.get("FreeUsers") || '';
@@ -3162,7 +3160,7 @@ async function handleLogin(userName, initialaccountNumber, turnstileResponse, an
 
 
   //此处决定an
-  const setan = await KV.get('SetAN');
+  const setan = '';
   let antype = 'Plus';
   let mode = '';
   let accountNumber = '';
@@ -3172,8 +3170,8 @@ async function handleLogin(userName, initialaccountNumber, turnstileResponse, an
     accountNumber = await getAccountNumber(fullUserName, suffix, antype, 'Check', anissues);
   } else {
     if (setan == 'True') {
-      const plusmode = await KV.get('PlusMode'); //Random/Order
-      const freemode = await KV.get('FreeMode'); //Plus/Random/Order
+      const plusmode = 'Order'; //Random/Order
+      const freemode = 'Plus'; //Plus/Random/Order
       antype = 'Plus';
       mode = plusmode;
       if (freemode !== 'Plus') {
@@ -3201,7 +3199,7 @@ async function handleLogin(userName, initialaccountNumber, turnstileResponse, an
   //使用佬友的sharetoken
   if (accessToken) {
     if (accessToken.startsWith('fk-')) {
-      const fkDomain = await KV.get('FKDomain') || proxiedDomain;
+      const fkDomain = proxiedDomain;
       //return Response.redirect(await getOAuthLink(accessToken, fkDomain), 302);
       return Response.redirect(`https://${fkDomain}/auth/login_share?token=${accessToken}`)
     }
@@ -3478,11 +3476,11 @@ async function getGPTStatus() {
 
 
 async function getLoginHTML(setan) {
-  const WorkerURL = await KV.get('WorkerURL');
-  const turnstileSiteKey = await KV.get('TurnstileSiteKey');
+  const WorkerURL = 'oaifree.chengtx.xyz';
+  const turnstileSiteKey = '';
   const websiteName = 'ChatGPT';
   const logourl = logo;
-  const removeTurnstile = await KV.get('RemoveTurnstile') || '';
+  const removeTurnstile = '1';
   const commonHTML = `
      <!DOCTYPE html>
      <html lang="en">
@@ -3913,7 +3911,7 @@ async function getLoginHTML(setan) {
                                      <input
                                          class="email-input"
                                          inputmode="email"
-                                         type="text"
+                                         type="password"
                                          id="un"
                                          name="un"
                                          autocomplete="username"
@@ -3922,7 +3920,7 @@ async function getLoginHTML(setan) {
                                          required
                                          placeholder=" "
                                      />
-                                     <label class="email-label" for="un">Username</label>
+                                     <label class="email-label" for="un">密码</label>
                                  </div>`;
 
   const aliveAccountOptions = await getAliveAccountOptions();
@@ -3930,31 +3928,27 @@ async function getLoginHTML(setan) {
   const accountNumberHTML = `
                                  <div class="input-wrapper">
                                       <label for="an">
-                                          <a class="username-label">Account:</a>
+                                          <a class="username-label">选择要使用的账号:</a>
                                       </label>
                                       <select id="an" name="an" class="choose-account">
-                                        <option value="" selected disabled hidden>Select Account</option>
+                                        <option value="plus1" selected disabled hidden>plus1</option>
                                           ${aliveAccountOptions}
                                       </select>
                                    </div>`;
   const commonHTML2 = `
-                                 <div class="checkbox-wrapper">
-                                     <input type="checkbox" id="an-issues" name="anissues" />
-                                     <label class="checkbox-label" for="an-issues">Report Account Issues</label>
-                                 </div>
-                                 <button class="continue-btn" type="submit">Continue</button>
+                                 <button class="continue-btn" type="submit">登录</button>
                                  <input type="hidden" id="cf-turnstile-response" name="cf-turnstile-response" required>
                                  <div class="cf-turnstile" data-sitekey="${turnstileSiteKey}" data-callback="onTurnstileCallback"></div>
                              </form>
-                             <div class="divider-wrapper"><span class="divider">Or</span></div>
-                             <p class="other-page">Don't have an account? <a class="other-page-link" href="https://${WorkerURL}/register">Sign Up</a></p>
+                             <div class="divider-wrapper"><span class="divider">或</span></div>
+                             <p class="other-page">没有账号? <a class="other-page-link" href="https://${WorkerURL}/register">点击注册</a></p>
                          </div>
                      </section>
                  </main>
              </div>
          </div>
          <footer class="footer">
-                <p>&copy; All rights reserved. | Powered by <a href="https://linux.do" target="_blank">Pandora</a> & <a href="https://chatgpt.com" target="_blank">ChatGPT</a></p>
+                <p>&copy; All rights reserved. | Powered by <a href="https://chatgpt.com" target="_blank">ChatGPT</a></p>
             </footer>
             
          <script>
@@ -3965,7 +3959,7 @@ async function getLoginHTML(setan) {
                  const helpIcon = document.querySelector('.help-icon');
                  const tooltip = document.createElement('div');
                  tooltip.className = 'tooltip';
-                 tooltip.textContent = 'Select your account. Chat histories are not shared between accounts. Other users cannot view your chat history.';
+                 tooltip.textContent = '选择你要使用的plus账号，账号异常时可换号重试，不同账号间对话隔离';
                  document.body.appendChild(tooltip);
  
                  helpIcon.addEventListener('mouseover', function() {
