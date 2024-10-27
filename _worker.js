@@ -2399,7 +2399,7 @@ async function getRegisterHTML() {
                   <div class="page-wrapper">
                       <main class="main-container">
                           <section class="content-wrapper">
-                              <div class="title-wrapper"><h1 class="title">Create your account</h1></div>
+                              <div class="title-wrapper"><h1 class="title">创建你的账号</h1></div>
                               <div class="login-container">
                                   <form id="manageAccountForm0" action="/register" method="POST">
                                       <div class="input-wrapper" id="cdkeyWrapper">
