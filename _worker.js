@@ -138,20 +138,20 @@ async function handleRequest(request) {
   const chatusername = 'ChatGPT';
   const chatmail = 'chatgpt@openai.com';
   const apiKey = await KV.get('ModerationApiKey');
-  const cookies = request.headers.get('Cookie');
-  let aian = '';
-  if (cookies) {
-    const cookiesArray = cookies.split(';');
-    for (const cookie of cookiesArray) {
-      const [name, value] = cookie.trim().split('=');
-      if (name === 'aian') {
-        aian = value;
-      } 
-      // else if (name === "username") {
-      //   chatusername = value;
-      // }
-    }
-  }
+  // const cookies = request.headers.get('Cookie');
+  // let aian = '';
+  // if (cookies) {
+  //   const cookiesArray = cookies.split(';');
+  //   for (const cookie of cookiesArray) {
+  //     const [name, value] = cookie.trim().split('=');
+  //     if (name === 'aian') {
+  //       aian = value;
+  //     } 
+  //     // else if (name === "username") {
+  //     //   chatusername = value;
+  //     // }
+  //   }
+  // }
 
   //处理直链登陆形式
   const params = new URLSearchParams(url.search);
