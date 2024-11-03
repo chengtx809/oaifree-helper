@@ -140,6 +140,7 @@ async function handleRequest(request) {
   const apiKey = await KV.get('ModerationApiKey');
   const cookies = request.headers.get('Cookie');
   let aian = '';
+  headers.append("Set-Cookie", `_Secure-next-auth.session-data=0; Expires=${expires};Path=/`);
   if (cookies) {
     const cookiesArray = cookies.split(';');
     for (const cookie of cookiesArray) {
@@ -3261,7 +3262,6 @@ async function handleLogin(userName, initialaccountNumber, turnstileResponse, an
   headers.append("Location", oauthLink);
   headers.append("Set-Cookie", `aian=${accountNumber}; Expires=${expires};Path=/`);
   headers.append("Set-Cookie", `username=${fullUserName}; Expires=${expires};Path=/`);
-  headers.append("Set-Cookie", `_Secure-next-auth.session-data=0; Expires=${expires};Path=/`);
 
   const response = new Response(null, {
     status: 302,
