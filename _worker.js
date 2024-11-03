@@ -281,7 +281,7 @@ async function handleRequest(request) {
         }
       }
 
-      url.host = "chatgpt.new.oaifree.com";
+      url.host = "chatgpt.new.oaifree.com/auth/login_auth0";
       const newnewRequest = new Request(url, {
         body: JSON.stringify(requestBody),
         method: request.method,
@@ -311,7 +311,7 @@ async function handleRequest(request) {
   }
 
   //Voice地址和其他
-  url.host = 'chatgpt.new.oaifree.com';
+  url.host = 'chatgpt.new.oaifree.com/auth/login_auth0';
   const modifiedRequest = new Request(url, request);
   if (voiceURL) {
     modifiedRequest.headers.set('X-Voice-Base', `https://${voiceURL}`);
