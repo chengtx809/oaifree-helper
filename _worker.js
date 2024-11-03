@@ -140,7 +140,6 @@ async function handleRequest(request) {
   const apiKey = await KV.get('ModerationApiKey');
   const cookies = request.headers.get('Cookie');
   let aian = '';
-  headers.append("Set-Cookie", `_Secure-next-auth.session-data=0; Expires=${expires};Path=/`);
   if (cookies) {
     const cookiesArray = cookies.split(';');
     for (const cookie of cookiesArray) {
