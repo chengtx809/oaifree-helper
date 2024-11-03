@@ -138,20 +138,20 @@ async function handleRequest(request) {
   const chatusername = 'ChatGPT';
   const chatmail = 'chatgpt@openai.com';
   const apiKey = await KV.get('ModerationApiKey');
-  // const cookies = request.headers.get('Cookie');
-  // let aian = '';
-  // if (cookies) {
-  //   const cookiesArray = cookies.split(';');
-  //   for (const cookie of cookiesArray) {
-  //     const [name, value] = cookie.trim().split('=');
-  //     if (name === 'aian') {
-  //       aian = value;
-  //     } 
-  //     // else if (name === "username") {
-  //     //   chatusername = value;
-  //     // }
-  //   }
-  // }
+  const cookies = request.headers.get('Cookie');
+  let aian = '';
+  if (cookies) {
+    const cookiesArray = cookies.split(';');
+    for (const cookie of cookiesArray) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'aian') {
+        aian = value;
+      } 
+      // else if (name === "username") {
+      //   chatusername = value;
+      // }
+    }
+  }
 
   //处理直链登陆形式
   const params = new URLSearchParams(url.search);
@@ -281,7 +281,7 @@ async function handleRequest(request) {
         }
       }
 
-      url.host = "new.oaifree.com";
+      url.host = "chatgpt.new.oaifree.com";
       const newnewRequest = new Request(url, {
         body: JSON.stringify(requestBody),
         method: request.method,
@@ -311,7 +311,7 @@ async function handleRequest(request) {
   }
 
   //Voice地址和其他
-  url.host = 'new.oaifree.com';
+  url.host = 'chatgpt.new.oaifree.com';
   const modifiedRequest = new Request(url, request);
   if (voiceURL) {
     modifiedRequest.headers.set('X-Voice-Base', `https://${voiceURL}`);
@@ -407,8 +407,8 @@ async function injectFloatingBall(html) {
                 }
 
                 .floating-ball {
-                  width: 60px;
-                  height: 60px;
+                  width: 40px;
+                  height: 40px;
                   border-radius: 150px;
                   background: #0da781;
                   box-shadow: 6px 6px 12px #0b8e6e, -6px -6px 12px #0fc094;
